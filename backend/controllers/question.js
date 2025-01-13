@@ -3,7 +3,7 @@ const questions = require("../databasemodels/questionmdel");
 const multer = require("multer");
 const fs = require('fs');
 
-const uploadDir = 'uploads';
+const uploadDir = '/tmp/uploads';
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }

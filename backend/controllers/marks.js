@@ -2,7 +2,7 @@ const Marks = require("../databasemodels/marksmodel");
 const User=require("../databasemodels/usermodel")
 const multer = require("multer");
 const fs = require('fs');
-const uploadDir = 'uploads';
+const uploadDir = '/tmp/uploads';
 
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);

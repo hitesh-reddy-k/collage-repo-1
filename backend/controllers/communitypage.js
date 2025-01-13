@@ -4,7 +4,7 @@ const fs = require("fs");
 const User= require("../databasemodels/usermodel")
 const mongoose = require("mongoose")
 
-const uploadDir = 'uploads';
+const uploadDir = '/tmp/uploads';
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }
