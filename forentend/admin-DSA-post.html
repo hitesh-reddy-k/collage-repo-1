@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin-DSA-post.css">
+    <title>Post Marks</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Post Marks</h1>
+        <form id="newPostForm">
+            <textarea id="postContent" placeholder="Write your post here..." required></textarea>
+            <input type="text" id="postLevel" placeholder="Enter level" required>
+            <input type="text" id="postSolution" placeholder="Enter solution" required>
+            <input type="file" id="postImage" accept="image/*">
+            <button type="submit">Post</button>
+        </form>
+        
+        
+        <div id="posts-container"></div>
+    </div>
+    <script src="admin-DSA-post.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Page</title>
+    <link rel="stylesheet" href="dsa.css">
+</head>
+<body class="dark-mode">
+    <div class="loader"></div>
+    <div class="filter-bar">
+        <label for="level-select">Select Level:</label>
+        <select id="level-select" onchange="filterPosts()">
+            <option value="all">All</option>
+        </select>
+    </div>
+    <div id="posts-container"></div>
+    <div id="profile-container" style="display: none;"></div>
+    <script src="dsa.js"></script>
+</body>
+</html>

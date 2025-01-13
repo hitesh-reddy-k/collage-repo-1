@@ -1,0 +1,193 @@
+/* General Body and Container Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2C3E50; /* Dark, charcoal background */
+    color: #ECF0F1; /* Light gray text color */
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    background: #2980B9; /* Professional blue header */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: #34495E 3px solid; /* Subtle dark border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.menu-bar {
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu-bar:hover {
+    color: #77d3f2; /* Light blue hover effect */
+}
+
+/* Profile Container */
+.profile-container {
+    display: flex;
+    align-items: center;
+    margin: 40px 0;
+    background-color: #34495E; /* Dark gray profile container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #77d3f2;
+    margin-right: 20px;
+}
+
+.profile-info {
+    flex-direction: column;
+}
+
+.username {
+    padding-bottom: 10px;
+    font-size: 22px;
+    color: #fff; /* White text for username */
+    font-weight: 600;
+}
+
+.attendance,
+.rollnumber,
+.year {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #BDC3C7; /* Light gray text for additional information */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #2C3E50; /* Dark background for the sidebar */
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 1;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 25px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: color 0.3s;
+    font-size: 16px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #34495E; /* Darker background on hover */
+}
+
+/* Option Cards (Marks, Memos, Sports, Programming) */
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.option-card {
+    background-color: #34495E; /* Dark background for the cards */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.option-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.option-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #fff; /* White text for titles */
+}
+
+.option-card p {
+    font-size: 16px;
+    color: #BDC3C7; /* Light gray text for descriptions */
+    margin-bottom: 20px;
+}
+
+.option-card .btn {
+    background-color: #27AE60; /* Emerald green button */
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.option-card .btn:hover {
+    background-color: #1A8042; /* Darker green on hover */
+}
+
+/* Color-coded Cards for Clubs */
+.mark-card {
+    background: linear-gradient(135deg, #F39C12, #F1C40F); /* Yellow gradient for Marks */
+}
+
+.memo-card {
+    background: linear-gradient(135deg, #E74C3C, #C0392B); /* Red gradient for Memos */
+}
+
+.sports-card {
+    background: linear-gradient(135deg, #27AE60, #2ECC71); /* Green gradient for Sports */
+}
+
+.programming-card {
+    background: linear-gradient(135deg, #2980B9, #3498DB); /* Blue gradient for Programming */
+}
+
+
+.profile-name{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff; /* White text for username */
+    padding-left: 20px;
+}
+

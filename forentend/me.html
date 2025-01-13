@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <link rel="stylesheet" href="me.css">
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="left-column">
+                <div class="profile-image">
+                    <img id="profile-image" src="no-profile-picture-icon-12.jpg" alt="Profile Image">
+                </div>
+                <div class="profile-info">
+                    <h2 id="full-name"></h2>
+                    <h3 id="position"></h3>
+                    <p id="Roll-Number"></p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="description"><span>Description: </span><h3> <span id="description">bootdey</span></h3></a>
+                    <textarea id="edit-description" class="edit-input" style="display:none;"></textarea>
+                    <a href="#" class="linkedin"><span>LinkedIn: </span> <span id="linkedin">bootdey</span></a>
+                    <input type="text" id="edit-linkedin" class="edit-input" style="display:none;">
+                    <button class="edit-btn" onclick="editInfo()">Edit</button>
+                    <button class="save-btn" onclick="saveInfo()" style="display:none;">Save</button>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="contact-info">
+                    <h3>Username</h3>
+                    <p id="username"></p>
+                    <input type="text" id="edit-username" class="edit-input" style="display:none;">
+                    <h3>Email</h3>
+                    <p id="email"></p>
+                    <h3>Phone</h3>
+                    <p id="phone"></p>
+                    <input type="text" id="edit-phone" class="edit-input" style="display:none;">
+                </div>
+                <div class="project-status">
+                    <div class="status">
+                        <p>Attendance</p>
+                        <div class="progress-bar">
+                            <div class="progress" id="web-design" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="me.js"></script>
+</body>
+</html>

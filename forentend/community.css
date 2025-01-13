@@ -1,0 +1,311 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+#loader {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+#posts-container {
+    width: 80%;
+    margin: 20px auto;
+    list-style-type: none;
+    padding: 0;
+}
+
+.post {
+    background-color: #1e1e1e;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-picture {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    color: #bb86fc;
+}
+
+.post h3 {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+
+.post img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.likes-comments {
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.comment {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment .profile-picture {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment .username {
+    font-size: 0.9em;
+    color: #bb86fc;
+}
+
+.comment p {
+    margin: 5px 0;
+    color: #ffffff;
+}
+
+.comment .reply {
+    color: #bb86fc;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.add-comment {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.add-comment img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.add-comment input[type="text"] {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: #333333;
+    border: 1px solid #555555;
+    border-radius: 15px;
+    color: #ffffff;
+}
+
+.add-comment button {
+    padding: 10px 20px;
+    background-color: #bb86fc;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.add-comment button:hover {
+    background-color: #9c27b0;
+}
+
+#profile-container {
+    background-color: #1e1e1e;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-details {
+    font-size: 1.2em;
+    color: #ffffff;
+}
+
+#ask-question-container {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #333333;
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+#ask-question-button {
+    cursor: pointer;
+    color: #bb86fc;
+}
+
+#ask-question-form {
+    margin-top: 10px;
+}
+
+#new-question-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#question-input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #555555;
+    background-color: #333333;
+    color: #ffffff;
+}
+
+#new-question-form button {
+    padding: 10px;
+    border: none;
+    background-color: #bb86fc;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+#new-question-form button#cancel-button {
+    background-color: #6c757d;
+}
+
+.container {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+#inputBar {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #555555;
+    background-color: #333333;
+    color: #ffffff;
+    cursor: pointer;
+}
+.loader {
+    width: 120px;
+    height: 150px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(#ddd 50%, #bbb 51%),
+      linear-gradient(#ddd, #ddd), linear-gradient(#ddd, #ddd),
+      radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%),
+      radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%),
+      radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%);
+    background-position: 0 20px, 45px 0, 8px 6px, 55px 3px, 75px 3px, 95px 3px;
+    background-size: 100% 4px, 1px 23px, 30px 8px, 15px 15px, 15px 15px, 15px 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6%;
+    animation: shake 3s ease-in-out infinite;
+    transform-origin: 60px 180px;
+    display: none;
+  }
+  
+  .loader:before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 100%;
+    width: 7px;
+    height: 5px;
+    background: #aaa;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 102px 0 #aaa;
+    
+  }
+  
+  .loader:after {
+    content: "";
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 20px;
+    background-color: #bbdefb;
+    background-image: linear-gradient( to right, #0004 0%, #0004 49%, #0000 50%, #0000 100% ),
+      linear-gradient(135deg, #64b5f6 50%, #607d8b 51%);
+    background-size: 30px 100%, 90px 80px;
+    border-radius: 50%;
+    background-repeat: repeat, no-repeat;
+    background-position: 0 0;
+    box-sizing: border-box;
+    border: 10px solid #DDD;
+    box-shadow: 0 0 0 4px #999 inset, 0 0 6px 6px #0004 inset;
+    animation: spin 3s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg)
+    }
+  
+    50% {
+      transform: rotate(360deg)
+    }
+  
+    75% {
+      transform: rotate(750deg)
+    }
+  
+    100% {
+      transform: rotate(1800deg)
+    }
+  }
+  
+  @keyframes shake {
+    65%, 80%, 88%, 96% {
+      transform: rotate(0.5deg)
+    }
+  
+    50%, 75%, 84%, 92% {
+      transform: rotate(-0.5deg)
+    }
+  
+    0%, 50%, 100% {
+      transform: rotate(0)
+    }
+  }
+ 

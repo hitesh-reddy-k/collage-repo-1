@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Page</title>
+    <link rel="stylesheet" href="community.css">
+</head>
+<body>
+    <!-- Loader element -->
+    <div class="loader"></div>
+
+    <div class="container">
+        <input type="text" id="inputBar" placeholder="Click here to input and upload">
+    </div>
+    <div id="ask-question-container">
+        <div id="ask-question-button">What do you want to ask or share?</div>
+        <div id="ask-question-form" style="display: none;">
+            <form id="new-question-form">
+                <textarea type="text" id="question-input" placeholder="Start your question with 'What', 'How', 'Why', etc."></textarea>
+                <input type="file" id="image-input" accept="image/*">
+                <button type="submit">Add question</button>
+                <button type="button" id="cancel-button">Cancel</button>
+            </form>
+        </div>
+    </div>
+    <div id="posts-container"></div>
+    <div id="profile-container" style="display: none;"></div>
+    <script src="community.js"></script>
+</body>
+</html>

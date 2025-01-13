@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#posts-container {
+    margin-bottom: 20px;
+}
+
+.post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.comment-box {
+    margin-left: 20px;
+    margin-top: 10px;
+    border-left: 2px solid #ddd;
+    padding-left: 10px;
+}
+
+.add-comment, .add-reply {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.add-comment input, .add-reply input {
+    flex: 1;
+    padding: 5px;
+    margin-right: 5px;
+    background-color: #695151;
+}
+
+.add-comment button, .add-reply button {
+    padding: 5px 10px;
+}
+
+

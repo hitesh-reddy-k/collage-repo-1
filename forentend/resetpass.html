@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+</head>
+<body>
+    <h2>Reset Password</h2>
+    <form id="reset-password-form">
+        <input type="password" id="new-password" placeholder="New Password" required>
+        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+        <button type="submit">Reset Password</button>
+    </form>
+
+    <script>
+        document.getElementById('reset-password-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const id = urlParams.get('id');
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            try {
+                // Log the token and passwords for debugging
+                console.log('Token:', token);
+                console.log('New Password:', newPassword);
+                console.log('Confirm Password:', confirmPassword);
+
+                const response = await fetch(`http://localhost:3000/password/reset/${id}/${token}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ password: newPassword, confirmpassword: confirmPassword })
+                });
+
+                // Log the response for debugging
+                console.log('Response:', response);
+
+                const data = await response.json();
+                // Log the data for debugging
+                console.log('Data:', data);
+
+                if (data.success) {
+                    alert('Password reset successfully');
+                    window.location.href = '/login'; // Redirect to login page
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error resetting password:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

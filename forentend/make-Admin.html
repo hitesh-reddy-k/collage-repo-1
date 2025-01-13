@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="make-Admin.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+  <form onsubmit="event.preventDefault(); makeAdmin();">
+    <label for="rollNumber">Roll Number:</label>
+    <input type="text" id="rollNumber" name="rollNumber" oninput="onRollNumberInput(event)" autocomplete="off" required>
+    <input type="hidden" id="userId" name="userId">
+    <div id="suggestions" class="suggestions"></div>
+    <button type="submit">Make Admin</button>
+  </form>
+</body>
+<script src="make-Admin.js"></script>
+</html>

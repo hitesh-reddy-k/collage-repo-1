@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Password Reset</title>
+</head>
+<body>
+    <h2>Request Password Reset</h2>
+    <form id="request-password-reset-form">
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button type="submit">Send Reset Link</button>
+    </form>
+
+    <script>
+        document.getElementById('request-password-reset-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/student/forgotpassword', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ Email: email })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    
+                    alert('Password reset link sent to your email');
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error sending password reset link:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

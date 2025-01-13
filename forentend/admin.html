@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="menu-bar" onclick="toggleSidebar( )">
+                &#9776; Menu
+            </div>
+            <h1>Student Dashboard</h1>
+            <div class="notification-icon">
+                <a href="notifications.html">&#128276;</a>
+                <span class="notification-count" id="notificationCount">0</span>
+            </div>
+        </header>
+        <div id="sidebar" class="sidebar">
+            <div class="profile-section">
+                <img src="no-profile-picture-icon-12.jpg" alt="Profile Picture" class="profile-pic">
+                <div class="profile-name" id="userInfo">Your Name</div>
+            </div>
+            <ul>
+                <li class="sidebar-1"><a href="me.html">Profile</a></li>
+                <li class="sidebar-1"><a href="#marks">Marks</a></li>
+                <li class="sidebar-1"><a href="#sports">Sports Clubs</a></li>
+                <li class="sidebar-1"><a href="#programming">Programming Club</a></li>
+                <li class="sidebar-1"><a href="#memos">Memos</a></li>
+                <li class="sidebar-1"><a href="#dsa">DSA Questions</a></li>
+                <li class="sidebar-1"><a href="make-Admin.html">make-Admin</a></li>
+                <li class="sidebar-1"><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+        <main>
+            <div class="dashboard-row">
+                <section id="marks" class="dashboard-box">
+                    <h2>post-student-marks</h2>
+                    <div class="content">
+                        <a href="admin-post-marks.html">
+                        <img src="student-exam-test-school-performance-grade-mark-2J4FD28.jpg" alt="your marks">
+                    </a>
+                    </div>
+                </section>
+                <section id="sports" class="dashboard-box">
+                    <h2>Sports Clubs Activities</h2>
+                    <div class="content">
+                       <img src="10716322.jpg" alt="sports club">
+                    </div>
+                </section>
+                <section id="programming" class="dashboard-box">
+                    <h2>Programming Club</h2>
+                    <div class="content">
+                        <img src="logo.png" alt="programming club">
+                    </div>
+                </section>
+            </div>
+            <div class="dashboard-row">
+                <section id="dsa" class="dashboard-box">
+                    <a href="admin-DSA-post.html"><h2>Important DSA Questions</h2>
+                    <div class="content">
+                        <img src="" alt="DSA questions">
+                    </div>
+                    </a>
+                </section>
+                <section id="messages" class="dashboard-box">
+                    <a href=""><h2>Messages</h2>
+                    <div class="content">
+                        <img src="" alt="messages">
+                    </div>
+                </a>
+                </section>
+                <section id="community" class="dashboard-box">
+                    <a href="community.html"><h2>Community</h2>
+                    <div class="content">
+                        <img src="" alt="community">
+                    </div>
+                </a>
+                </section>
+            </div> 
+        </main>
+        <footer>
+            <p>&copy; 2024 Student Dashboard</p>
+        </footer>
+    </div>
+</body>
+<script src="admin.js"></script>
+</html>

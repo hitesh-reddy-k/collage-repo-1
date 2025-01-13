@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin-post-marks.css">
+    <title>Post Marks</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Post Marks</h1>
+        <div class="search-container">
+            <label for="student-search">Search by Roll Number:</label>
+            <input type="text" id="student-search" placeholder="Enter roll number...">
+            <div id="suggestions"></div>
+        </div>
+        <div class="post-marks-container">
+            <label for="marks-image">Upload Marks Image:</label>
+            <input type="file" id="marks-image" accept="image/*">
+            <label for="semester">Semester:</label>
+            <input type="number" id="semester" placeholder="Enter semester...">
+            <label for="reserver-id">Reserver ID:</label>
+            <input type="text" id="reserver-id" readonly>
+            <button id="post-marks-button">Post Marks</button>
+        </div>
+    </div>
+    <script src="admin-post-marks.js"></script>
+</body>
+</html>
