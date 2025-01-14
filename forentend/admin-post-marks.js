@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function fetchRollNumbers(keyword) {
       try {
         const token = getToken();
-        const response = await fetch(`http://localhost:3000/marks/rollnumbers?keyword=${keyword}`, {
+        const response = await fetch(`https://collage-repo-1.vercel.app/rollnumbers?keyword=${keyword}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const token = getToken();
   
         try {
-          const response = await fetch('http://localhost:3000/marks/uploadmarks', {
+          const response = await fetch('https://collage-repo-1.vercel.app/marks/uploadmarks', {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`

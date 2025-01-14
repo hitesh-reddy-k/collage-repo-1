@@ -1,5 +1,5 @@
 async function fetchRollNumbers(keyword) {
-    const response = await fetch(`http://localhost:3000/marks/rollnumbers?keyword=${keyword}`);
+    const response = await fetch(`https://collage-repo-1.vercel.app/marks/rollnumbers?keyword=${keyword}`);
     const rollNumbers = await response.json();
     return rollNumbers;
   }
@@ -35,7 +35,7 @@ async function fetchRollNumbers(keyword) {
   async function makeAdmin() {
     const userId = document.getElementById('userId').value;
 
-    const response = await fetch(`http://localhost:3000/student/make-admin/${userId}`, {
+    const response = await fetch(`https://collage-repo-1.vercel.app/student/make-admin/${userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

@@ -20,7 +20,7 @@ async function fetchPost() {
         const postId = getPostIdFromUrl();
         const token = getToken();
 
-        const response = await fetch(`http://localhost:3000/question/posts/${postId}`, {
+        const response = await fetch(`https://collage-repo-1.vercel.app/question/posts/${postId}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`

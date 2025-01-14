@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 password: password,
             };
 
-            fetch('http://localhost:3000/student/login', {
+            fetch('https://collage-repo-1.vercel.app/student/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

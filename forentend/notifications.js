@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             window.location.href = 'login.html';
             return;
         }
-        const response = await fetch('http://localhost:3000/student/me', {
+        const response = await fetch('https://collage-repo-1.vercel.app/student/me', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

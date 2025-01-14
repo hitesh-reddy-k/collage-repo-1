@@ -23,7 +23,7 @@ async function fetchUserInfoAndPosts() {
         const token = getToken();
 
         // Fetch user info
-        const userResponse = await fetch('http://localhost:3000/student/me', {
+        const userResponse = await fetch('https://collage-repo-1.vercel.app/student/me', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ async function fetchUserInfoAndPosts() {
         localStorage.setItem('userId', userData.users._id);
 
         // Fetch posts
-        const response = await fetch('http://localhost:3000/question/posts', {
+        const response = await fetch('https://collage-repo-1.vercel.app/question/posts', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -120,7 +120,7 @@ async function submitComment(postId) {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/question/posts/${postId}/comment`, {
+        const response = await fetch(`https://collage-repo-1.vercel.app/question/posts/${postId}/comment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ async function createPost(event) {
     }
 
     try {
-        const response = await fetch('http://localhost:3000/question/create-post', {
+        const response = await fetch('https://collage-repo-1.vercel.app/question/create-post', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${getToken()}`  // Content-Type should not be set when using FormData

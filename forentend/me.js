@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             return;
         }
 
-        const response = await fetch('http://localhost:3000/student/me', {
+        const response = await fetch('https://collage-repo-1.vercel.app/student/me', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ async function saveInfo() {
 
         // Update Username
         const updatedDataUsername = { Username: updatedUsername };
-        const responseUsername = await fetch('http://localhost:3000/student/update/UserName', {
+        const responseUsername = await fetch('https://collage-repo-1.vercel.app/student/update/UserName', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ async function saveInfo() {
 
         // Update Phone Number
         const updatedDataPhone = { PhoneNumber: updatedPhone };
-        const responsePhone = await fetch('http://localhost:3000/student/update/PhoneNumber', {
+        const responsePhone = await fetch('https://collage-repo-1.vercel.app/student/update/PhoneNumber', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ async function saveInfo() {
 
         // Update LinkedIn
         const updatedDataLinkedIn = { linkedIn: updatedLinkedIn };
-        const responseLinkedIn = await fetch('http://localhost:3000/student/update/LinkedIn', {
+        const responseLinkedIn = await fetch('https://collage-repo-1.vercel.app/student/update/LinkedIn', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -192,7 +192,7 @@ async function saveInfo() {
         }
 
         const updatedDataDescription = { description: updatedDescription };
-        const responseDescription = await fetch('http://localhost:3000/student/update/description', {
+        const responseDescription = await fetch('https://collage-repo-1.vercel.app/student/update/description', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

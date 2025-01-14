@@ -58,7 +58,7 @@ document.getElementById('signupButton').addEventListener('click', function(event
   };
 
   // Send data to the server
-  fetch('http://localhost:3000/student/register', {
+  fetch('https://collage-repo-1.vercel.app/student/register', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',

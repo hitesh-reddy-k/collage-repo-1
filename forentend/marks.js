@@ -29,7 +29,7 @@ function getToken() {
       }
   
       // Fetch user details
-      const response = await fetch('http://localhost:3000/student/me', {
+      const response = await fetch('https://collage-repo-1.vercel.app/student/me', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function getToken() {
       console.log('User Data:', userData);
   
       // Fetch marks data
-      const marksResponse = await fetch('http://localhost:3000/marks/marks', {
+      const marksResponse = await fetch('https://collage-repo-1.vercel.app//marks/marks', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ async function fetchLevelsAndPosts(level = 'all') {
         const token = getToken();
 
         // Fetch levels
-        const levelsResponse = await fetch('http://localhost:3000/question/levels', {
+        const levelsResponse = await fetch('https://collage-repo-1.vercel.app/question/levels', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ async function fetchUserInfoAndPosts(level = 'all') {
     try {
         const token = getToken();
 
-        const userResponse = await fetch('http://localhost:3000/student/me', {
+        const userResponse = await fetch('https://collage-repo-1.vercel.app/student/me', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ async function fetchUserInfoAndPosts(level = 'all') {
             throw new Error('User data is incomplete or not valid');
         }
 
-        let url = 'http://localhost:3000/question/posts';
+        let url = 'https://collage-repo-1.vercel.app/question/posts';
         if (level !== 'all') {
             url += `?level=${level}`;
         }

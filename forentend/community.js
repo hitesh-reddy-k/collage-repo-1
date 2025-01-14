@@ -16,7 +16,7 @@ async function fetchUserInfoAndPosts() {
         const token = getToken();
 
         // Fetch user info
-        const userResponse = await fetch('http://localhost:3000/student/me', {
+        const userResponse = await fetch('https://collage-repo-1.vercel.app/student/me', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ async function fetchUserInfoAndPosts() {
         }
 
         // Fetch posts
-        const response = await fetch('http://localhost:3000/community/posts', {
+        const response = await fetch('https://collage-repo-1.vercel.app/community/posts', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -126,7 +126,7 @@ async function toggleLike(postId) {
     showLoader();
     try {
         const token = getToken();
-        const response = await fetch(`http://localhost:3000/community/post/${postId}/like`, {
+        const response = await fetch(`https://collage-repo-1.vercel.app/community/post/${postId}/like`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ async function submitComment(postId) {
     if (commentText && userId) {
         try {
             const token = getToken();
-            const response = await fetch(`http://localhost:3000/community/posts/${postId}/comment`, {
+            const response = await fetch(`https://collage-repo-1.vercel.app/community/posts/${postId}/comment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

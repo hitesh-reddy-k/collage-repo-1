@@ -13,7 +13,7 @@ async function getUserProfile() {
 
   try {
       // Fetch user profile data from the server
-      const response = await fetch(`http://localhost:3000/community/student/${userId}`, {
+      const response = await fetch(`https://collage-repo-1.vercel.app/community/student/${userId}`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
