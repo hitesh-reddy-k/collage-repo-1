@@ -21,10 +21,9 @@ dotenv.config({ path: "./backend/envfile/config.env" });
 const app = express();
 const port = process.env.PORT || 3000;
 
-
 // Updated CORS Configuration
 const corsOptions = {
-    origin: ['https://collage-project-pearl.vercel.app', 'https://collage-repo-1.vercel.app'],
+    origin: ['https://collage-project-pearl.vercel.app'], // Allow only the frontend URL
     credentials: true, // Allow cookies and credentials
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allowed methods
     allowedHeaders: [
@@ -46,7 +45,7 @@ app.options('*', (req, res) => {
         'Access-Control-Allow-Headers',
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization'
     );
-    res.sendStatus(200); // Respond with HTTP 200 OK
+    res.sendStatus(200); // Ensure the preflight request gets a 200 status
 });
 
 // Middleware
