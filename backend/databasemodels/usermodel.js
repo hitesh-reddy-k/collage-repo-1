@@ -58,8 +58,13 @@ const UserSchema = new mongoose.Schema({
     },
     Attendance: {
         type: Number,
-        default: 0 // Default attendance percentage
+        default: 0
     },
+    clubs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Club'
+    }],
+    
     resetPasswordToken: String,
     resetPasswordExpire: Date,
 }, { timestamps: true });
