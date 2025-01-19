@@ -15,11 +15,13 @@ const community = require("../backend/routes/communityroute.js")
 
 
 const corsOptions = {
-    origin: 'https://collage-project-pearl.vercel.app/',
+    origin: [
+        'https://collage-project-pearl.vercel.app',
+        'https://collage-repo-1.vercel.app'
+    ],
     optionsSuccessStatus: 200,
-    credentials: true 
+    credentials: true,
 };
-
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
