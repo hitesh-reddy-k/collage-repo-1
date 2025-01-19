@@ -10,31 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
             clearErrorMessages();
 
-            let hasError = false;
-
-            if (!email) {
-                showError('emailError', 'Please enter an email.');
-                hasError = true;
-            }
-            if (!password) {
-                showError('passwordError', 'Please enter a password.');
-                hasError = true;
-            }
-            if (hasError) {
+            if (!email || !password) {
+                if (!email) showError('emailError', 'Please enter an email.');
+                if (!password) showError('passwordError', 'Please enter a password.');
                 return;
             }
 
-            const data = {
-                Email: email,
-                password: password,
-            };
+            const data = { Email: email, password: password };
 
             fetch('https://collage-repo-1.vercel.app/student/login', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include', // Include cookies for cross-origin
                 body: JSON.stringify(data),
             })
                 .then((response) => {
@@ -47,19 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then((data) => {
                     if (data.success) {
-                        console.log(data);
-
-                        // Store token, role, and userId in localStorage
                         localStorage.setItem('token', data.token);
                         localStorage.setItem('role', data.role);
-                        localStorage.setItem('userId', data.userId); // Fix here
+                        localStorage.setItem('userId', data.userId);
 
-                        // Redirect based on user role
-                        if (data.user.role === 'ADMIN') {
-                            window.location.href = 'admin.html';
-                        } else {
-                            window.location.href = 'main.html';
-                        }
+                        const redirectURL = data.user.role === 'ADMIN' ? 'admin.html' : 'main.html';
+                        window.location.href = redirectURL;
                     } else {
                         showError('loginError', data.message);
                     }
@@ -75,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function showError(elementId, message) {
         const errorElement = document.getElementById(elementId);
-        errorElement.textContent = message;
+        if (errorElement) errorElement.textContent = message;
     }
 
     function clearErrorMessages() {
