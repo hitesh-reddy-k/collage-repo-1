@@ -15,7 +15,7 @@ const community = require("../backend/routes/communityroute.js")
 
 
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500',
+    origin: 'https://collage-project-pearl.vercel.app/',
     optionsSuccessStatus: 200,
     credentials: true 
 };
