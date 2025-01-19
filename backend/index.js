@@ -24,11 +24,11 @@ const port = process.env.PORT || 3000;
 // CORS Configuration
 const corsOptions = {
     origin: [
-        'https://collage-project-pearl.vercel.app', 
-        'https://collage-repo-1.vercel.app'
+        'https://collage-project-pearl.vercel.app',
+        'https://collage-repo-1.vercel.app',
     ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    credentials: true, 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], 
     allowedHeaders: [
         'X-CSRF-Token', 'X-Requested-With', 'Accept', 'Accept-Version',
         'Content-Length', 'Content-MD5', 'Content-Type', 'Date',
@@ -38,9 +38,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Handle Preflight Requests Globally
 app.options('*', cors(corsOptions));
-
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
