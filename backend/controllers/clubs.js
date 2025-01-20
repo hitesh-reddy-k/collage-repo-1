@@ -78,3 +78,43 @@ exports.leaveClub = async (req, res) => {
         });
     }
 };
+
+exports.createClub = async(req,res)=>{
+    try {
+        const {userId,clubName,post} = req.body;
+
+        if(!userId || !clubName){
+            return res.status(400).json({error:"userId and clubName are required"})
+        }
+        
+        const user = await User.findOne({userId: userId})
+
+        if(!user){
+            return res.status(404).json({error:"User not found"})
+        }
+
+        const existing  = await clubs.findOne({"clubs.clubName":clubName})
+
+        if(existing){
+            return res.status(400).json({error:"Club already exists"})
+        }
+
+        const newClub = new clubs({
+            userId: userId,
+            clubName: clubName,
+            post: post,
+            members: [userId]
+        })
+
+        await newClub.save();
+
+        res.status(201).json({
+            success: true,
+            message: "Club created successfully",
+            club: newClub,
+        });
+
+    } catch (error) {
+        res.status(500).json({error:"error in creating the club"+error.message})
+    }
+}
