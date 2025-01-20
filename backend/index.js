@@ -11,6 +11,8 @@ const cookieParser = require("cookie-parser");
 const messages = require("../backend/routes/message.js");
 const community = require("../backend/routes/communityroute.js");
 
+const clubs =require("../backend/routes/clubrouter.js")
+
 dotenv.config({ path: "backend/envfile/config.env" });
 
 const app = express();
@@ -53,6 +55,7 @@ app.use("/student", user);
 app.use("/messages", messages);
 app.use("/community", community);
 app.use("/marks", marks);
+app.use("/clubs", clubs);
 
 console.log("MongoDB URL:", process.env.URL);
 
