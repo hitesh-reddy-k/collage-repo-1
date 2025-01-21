@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     const loginButton = document.getElementById('loginButton');
 
+    if(token){
+        window.location.href = 'main.html';
+    }
+
     if (loginButton) {
         loginButton.addEventListener('click', function (event) {
             event.preventDefault();
