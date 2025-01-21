@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     const loginButton = document.getElementById('loginButton');
 
+
+    const token = localStorage.getItem('token');
+
     if(token){
         window.location.href = 'main.html';
     }
