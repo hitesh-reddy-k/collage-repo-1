@@ -6,7 +6,7 @@ async function handleJoinClub() {
     messageElement.textContent = "";
 
     try {
-        const response = await fetch("http://localhost:5000/api/clubs/join", {
+        const response = await fetch("http://localhost:5000/clubs/join", {
             method: "POST",
             credentials: "include",
             headers: {
@@ -29,7 +29,7 @@ async function handleLeaveClub() {
     messageElement.textContent = "";
 
     try {
-        const response = await fetch("http://localhost:5000/api/clubs/leave", {
+        const response = await fetch("http://localhost:5000/clubs/leave", {
             method: "POST",
             credentials: "include",
             headers: {
@@ -53,7 +53,7 @@ async function handleCreateClub() {
     createMessageElement.textContent = "";
 
     try {
-        const response = await fetch("http://localhost:5000/api/clubs/create", {
+        const response = await fetch("http://localhost:5000/clubs/create", {
             method: "POST",
             credentials: "include",
             headers: {
