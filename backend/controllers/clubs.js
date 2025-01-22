@@ -62,7 +62,6 @@ exports.leaveClub = async (req, res) => {
             return res.status(400).json({ success: false, message: "User is not a member of this club" });
         }
 
-        // Remove the club from the user's list
         user.clubs = user.clubs.filter((id) => id.toString() !== clubId);
         await user.save();
 
