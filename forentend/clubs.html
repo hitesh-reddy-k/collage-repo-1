@@ -9,13 +9,23 @@
 <body>
     <h2>Club Actions</h2>
 
-    <input type="text" id="clubId" placeholder="Enter Club ID">
-
-    <button class="join" onclick="handleJoinClub()">Join Club</button>
-    <button class="leave" onclick="handleLeaveClub()">Leave Club</button>
+    <div>
+        <input type="text" id="clubId" placeholder="Enter Club ID">
+        <button class="join" onclick="handleJoinClub()">Join Club</button>
+        <button class="leave" onclick="handleLeaveClub()">Leave Club</button>
+    </div>
 
     <p id="message"></p>
-<script src="clubs.js"></script>
 
+    <h2>Create a Club</h2>
+    <div>
+        <input type="text" id="clubName" placeholder="Enter Club Name">
+        <input type="text" id="clubPost" placeholder="Enter Post (Optional)">
+        <button class="create" onclick="handleCreateClub()">Create Club</button>
+    </div>
+
+    <p id="createMessage"></p>
+
+    <script src="clubs.js"></script>
 </body>
 </html>

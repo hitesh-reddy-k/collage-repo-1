@@ -6,13 +6,12 @@ async function handleJoinClub() {
     messageElement.textContent = "";
 
     try {
-        const response = await fetch("http://localhost:5000//clubs/join", {
+        const response = await fetch("http://localhost:5000/api/clubs/join", {
             method: "POST",
-            credentials: 'include',
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-
             },
             body: JSON.stringify({ clubId }),
         });
@@ -32,7 +31,7 @@ async function handleLeaveClub() {
     try {
         const response = await fetch("http://localhost:5000/api/clubs/leave", {
             method: "POST",
-            credentials: 'include',
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -44,5 +43,29 @@ async function handleLeaveClub() {
         messageElement.textContent = data.message || "Successfully left the club!";
     } catch (error) {
         messageElement.textContent = "Error leaving the club: " + error.message;
+    }
+}
+
+async function handleCreateClub() {
+    const clubName = document.getElementById("clubName").value;
+    const clubPost = document.getElementById("clubPost").value;
+    const createMessageElement = document.getElementById("createMessage");
+    createMessageElement.textContent = "";
+
+    try {
+        const response = await fetch("http://localhost:5000/api/clubs/create", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ clubName, post: clubPost }),
+        });
+
+        const data = await response.json();
+        createMessageElement.textContent = data.message || "Club created successfully!";
+    } catch (error) {
+        createMessageElement.textContent = "Error creating the club: " + error.message;
     }
 }
