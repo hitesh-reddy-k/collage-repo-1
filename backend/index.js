@@ -1,3 +1,4 @@
+
 const express = require('express');
 const dotenv = require('dotenv');
 const Connect = require("../backend/databacesonnect/data.js");
@@ -15,11 +16,13 @@ const community = require("../backend/routes/communityroute.js")
 
 
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500',
+    origin: [
+        'https://collage-project-pearl.vercel.app',
+        'https://collage-repo-1.vercel.app'
+    ],
     optionsSuccessStatus: 200,
-    credentials: true 
+    credentials: true,
 };
-
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
