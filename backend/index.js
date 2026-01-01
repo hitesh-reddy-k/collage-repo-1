@@ -32,28 +32,11 @@ const allowedOrigins = new Set([
 
 console.log("CURRENT CORS CONFIG RUNNING");
 
+app.use(cors(allowedOrigins))
+
 app.use((req, res, next) => {
-  let origin = req.headers.origin;
-
-  // fallback if Origin missing (like on some Vercel internal requests)
-  if (!origin && req.headers.referer) {
-    const url = new URL(req.headers.referer);
-    origin = `${url.protocol}//${url.host}`;
-  }
-
-  console.log("REQ ORIGIN =>", origin);
-
-  if (origin && allowedOrigins.has(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-    res.header("Vary", "Origin");
-  }
-
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  if (req.method === "OPTIONS") return res.sendStatus(200);
-
+  console.log("---- FULL HEADERS ----");
+  console.log(req.headers);
   next();
 });
 // ---------- ROUTES ----------
