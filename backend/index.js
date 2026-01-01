@@ -36,7 +36,7 @@ app.use(cookieParser())
 // socketHandler(server);
 
 
-
+console.log("CURRENT CORS CONFIG RUNNING");
 app.use(cors(corsOptions));
 
 
