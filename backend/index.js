@@ -24,19 +24,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // ---------- FORCE CORS (VERCEL SAFE) ----------
-const allowedOrigins = [
+const allowedOrigins = new Set([
   "https://collage-repo-1-qxtl.vercel.app",
   "https://collage-project-pearl.vercel.app",
   "https://collage-repo-1.vercel.app"
-];
+]);
 
 console.log("CURRENT CORS CONFIG RUNNING");
 
 app.use((req, res, next) => {
-  const origin = req.headers.origin;
+  let origin = req.headers.origin;
+
+  // fallback if Origin missing (like on some Vercel internal requests)
+  if (!origin && req.headers.referer) {
+    const url = new URL(req.headers.referer);
+    origin = `${url.protocol}//${url.host}`;
+  }
+
   console.log("REQ ORIGIN =>", origin);
 
-  if (allowedOrigins.includes(origin)) {
+  if (origin && allowedOrigins.has(origin)) {
     res.header("Access-Control-Allow-Origin", origin);
     res.header("Vary", "Origin");
   }
@@ -45,13 +52,10 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
+  if (req.method === "OPTIONS") return res.sendStatus(200);
 
   next();
 });
-
 // ---------- ROUTES ----------
 app.get('/', (req, res) => {
   res.send('Hello World!');
