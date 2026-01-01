@@ -1,42 +1,37 @@
-
 const express = require('express');
 const dotenv = require('dotenv');
 const Connect = require("../backend/databacesonnect/data.js");
 const questions = require("../backend/routes/questionsroute.js");
-const cors = require("cors");
-const path = require("path")
-const user =  require("../backend/routes/userroute.js")
-const marks =require("../backend/routes/sem-marksroute.js")
+const path = require("path");
+const user = require("../backend/routes/userroute.js");
+const marks = require("../backend/routes/sem-marksroute.js");
 const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
+const messages = require("../backend/routes/message.js");
+const community = require("../backend/routes/communityroute.js");
+
 const app = express();
 const port = 3000;
-const cookieParser = require("cookie-parser")
-const messages = require("../backend/routes/message.js")
-const community = require("../backend/routes/communityroute.js")
 
+dotenv.config({ path: "backend/envfile/config.env" });
 
-const corsOptions = {
-  origin: [
-    'https://collage-project-pearl.vercel.app',
-    'https://collage-repo-1.vercel.app',
-    'https://collage-repo-1-qxtl.vercel.app'
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-
-
+// ---------- STATIC ----------
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-
-app.use(bodyParser.json()); 
+// ---------- PARSERS ----------
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser())
-// socketHandler(server);
+app.use(cookieParser());
 
+// ---------- FORCE CORS (VERCEL SAFE) ----------
+const allowedOrigins = [
+  "https://collage-repo-1-qxtl.vercel.app",
+  "https://collage-project-pearl.vercel.app",
+  "https://collage-repo-1.vercel.app"
+];
 
 console.log("CURRENT CORS CONFIG RUNNING");
+
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   console.log("REQ ORIGIN =>", origin);
@@ -57,25 +52,24 @@ app.use((req, res, next) => {
   next();
 });
 
-
-app.options('*', cors(corsOptions));
-
+// ---------- ROUTES ----------
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+  res.send('Hello World!');
 });
 
 app.use(express.json());
+
 app.use("/question", questions);
-app.use("/student",user) 
+app.use("/student", user);
+app.use("/messages", messages);
+app.use("/community", community);
+app.use("/marks", marks);
 
-app.use("/messages",messages)
-app.use("/community",community)
-app.use("/marks",marks)
-
-dotenv.config({ path: "backend/envfile/config.env" });
-console.log("MongoDB URL:", process.env.URL); 
-
+// ---------- DB ----------
+console.log("MongoDB URL:", process.env.URL);
 Connect();
+
+// ---------- SERVER ----------
 app.listen(port, () => {
-    console.log(`Example app listening on port http://localhost:${port}`);
+  console.log(`Example app listening on port http://localhost:${port}`);
 });
