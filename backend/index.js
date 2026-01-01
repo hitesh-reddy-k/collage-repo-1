@@ -16,14 +16,16 @@ const community = require("../backend/routes/communityroute.js")
 
 
 const corsOptions = {
-    origin: [
-        'https://collage-project-pearl.vercel.app',
-        'https://collage-repo-1.vercel.app',
-        'https://collage-repo-1-qxtl.vercel.app/'
-    ],
-    optionsSuccessStatus: 200,
-    credentials: true,
+  origin: [
+    'https://collage-project-pearl.vercel.app',
+    'https://collage-repo-1.vercel.app',
+    'https://collage-repo-1-qxtl.vercel.app'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
+
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -36,6 +38,9 @@ app.use(cookieParser())
 
 
 app.use(cors(corsOptions));
+
+
+app.options('*', cors(corsOptions));
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
