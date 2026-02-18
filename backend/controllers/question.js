@@ -50,7 +50,6 @@ exports.getPosts = async (req, res) => {
             });
         }
     } catch (error) {
-        console.error('Error getting posts:', error);
         res.status(500).json({
             success: false,
             message: 'Server error',
@@ -83,7 +82,6 @@ exports.getPostById = async (req, res) => {
             data: post
         });
     } catch (error) {
-        console.error('Error getting post:', error);
         res.status(500).json({
             success: false,
             message: 'Server error'
@@ -96,7 +94,6 @@ exports.getPostById = async (req, res) => {
 exports.getDistinctLevels = async (req, res) => {
     try {
         const levels = await questions.distinct('level');
-        console.log(levels)
         if (levels.length > 0) {
             res.status(200).json({
                 success: true,
@@ -109,7 +106,6 @@ exports.getDistinctLevels = async (req, res) => {
             });
         }
     } catch (error) {
-        console.error('Error getting levels:', error);
         res.status(500).json({
             success: false,
             message: 'Server error',
@@ -122,7 +118,6 @@ exports.getDistinctLevels = async (req, res) => {
 exports.newPost = async (req, res, next) => {
     upload.single('img')(req, res, async function (err) {
         if (err) {
-            console.error(err);
             return res.status(500).json({
                 success: false,
                 error: 'Failed to upload image'
@@ -133,7 +128,6 @@ exports.newPost = async (req, res, next) => {
             const newPostData = req.body;
 
             if (req.file) {
-                console.log('Uploaded File:', req.file);
                 const imgData = fs.readFileSync(req.file.path);
                 newPostData.img = {
                     data: imgData,
@@ -141,10 +135,8 @@ exports.newPost = async (req, res, next) => {
                 };
                 fs.unlinkSync(req.file.path);
             }
-            console.log('New Post Data:', newPostData);
 
             const requiredFields = ['question', 'level', 'solution'];
-            console.log(requiredFields);
             for (const field of requiredFields) {
                 if (!newPostData[field]) {
                     return res.status(400).json({
@@ -161,7 +153,6 @@ exports.newPost = async (req, res, next) => {
                 post: newPost
             });
         } catch (error) {
-            console.error('Error creating new post:', error);
             res.status(500).json({
                 success: false,
                 error: 'Internal server error'
@@ -178,7 +169,6 @@ exports.addLike = async (req, res) => {
     try {
         const post = await questions.findById(postId);
         if (!post) {
-            console.error(`Post with ID ${postId} not found`);
             return res.status(404).json({ error: 'Post not found' });
         }
 
@@ -191,7 +181,6 @@ exports.addLike = async (req, res) => {
         await post.save();
         res.status(200).json({ success: true, post });
     } catch (error) {
-        console.error('Error liking post:', error);
         res.status(500).json({ error: 'Server error', details: error.message });
     }
 };
@@ -216,13 +205,11 @@ exports.addComment = async (req, res) => {
             likes: 0 
         };
 
-       
         post.likesAndComments.push(newComment);
         await post.save();
 
         res.status(201).json(post);
     } catch (error) {
-        console.error('Error submitting comment:', error);
         res.status(500).json({ error: 'Server error' });
     }
 };
@@ -239,7 +226,6 @@ exports.getLikesAndComments = async (req, res) => {
 
         res.status(200).json({ data: posts });
     } catch (error) {
-        console.error('Error fetching posts:', error);
         res.status(500).json({ message: error.message });
     }
 };
@@ -272,7 +258,6 @@ exports.addReply = async (req, res) => {
 
         res.status(201).json(post);
     } catch (error) {
-        console.error('Error adding reply:', error);
         res.status(500).json({ error: 'Server error' });
     }
 };

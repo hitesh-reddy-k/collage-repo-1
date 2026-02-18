@@ -13,10 +13,24 @@ let io;
 const socketUsers = new Map();
 
 const socketHandler = (server) => {
-    io = socketIo(server);
+    io = socketIo(server, {
+        cors: {
+            origin: [
+                "https://collage-repo-1-qxtl.vercel.app",
+                "https://collage-project-pearl.vercel.app",
+                "https://collage-repo-1.vercel.app",
+                "http://localhost:3000",
+                "http://127.0.0.1:3000"
+            ],
+            credentials: true,
+            methods: ["GET", "POST"]
+        }
+    });
 
     io.on('connection', (socket) => {
-        console.log('New client connected');
+        if (process.env.NODE_ENV === 'development') {
+            console.log('New client connected');
+        }
 
         socket.on('registerUser', (userId) => {
             socketUsers.set(userId, socket.id);
@@ -28,7 +42,9 @@ const socketHandler = (server) => {
                     socketUsers.delete(key);
                 }
             });
-            console.log('Client disconnected');
+            if (process.env.NODE_ENV === 'development') {
+                console.log('Client disconnected');
+            }
         });
     });
 };

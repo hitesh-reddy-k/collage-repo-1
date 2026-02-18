@@ -1,7 +1,6 @@
 const express = require("express");
 const User = require("../databasemodels/usermodel");
 const sendToken = require("../utilities/jwt");
-const crypto = require("crypto");
 const { sendEmail } = require("../utilities/mailer");
 const jwt = require("jsonwebtoken")
 
@@ -68,72 +67,20 @@ exports.logout = async (req, res) => {
   }
 };
 
+// Password reset feature removed - use admin panel to reset user passwords
 exports.forgotPassword = async (req, res, next) => {
-  const { Email } = req.body;
-
-  try {
-    const user = await User.findOne({ Email });
-    if (!user) {
-      return res.status(404).json({
-        status: "fail",
-        message: `User with email ${Email} not found`,
-      });
-    }
-
-    const resetToken = user.getResetPasswordToken();
-    await user.save({ validateBeforeSave: false });
-
-    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/reset-password/${user._id}/${resetToken}`;
-
-    const message = `Your password reset token is:\n\n${resetPasswordUrl}\n\nIf you have not requested this email, please ignore it.`;
-
-    
-    console.log(message);
-
-    res.status(200).json({
-      success: true,
-      message: `Email sent to ${user.Email} successfully`,
-    });
-  } catch (error) {
-    console.error('Forgot password error:', error);
-    next(error);
-  }
+  return res.status(501).json({
+    success: false,
+    message: "Password reset feature has been disabled. Please contact an administrator."
+  });
 };
 
+// Password reset feature removed - use admin panel to reset user passwords
 exports.resetPassword = async (req, res, next) => {
-  const { id, token } = req.params;
-  const resetPasswordToken = crypto.createHash("sha256").update(token).digest("hex");
-
-  try {
-    const user = await User.findOne({
-      _id: id,
-      resetPasswordToken,
-      resetPasswordExpire: { $gt: Date.now() },
-    });
-
-    if (!user) {
-      return res.status(400).json({
-        status: "fail",
-        message: "Password reset token is invalid or has expired",
-      });
-    }
-
-    // Update user password
-    user.password = req.body.password;
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpire = undefined;
-
-    await user.save();
-
-    
-    sendToken(user, 200, res); 
-  } catch (error) {
-    console.error('Reset password error:', error);
-    res.status(500).json({
-      status: "fail",
-      message: "An error occurred while resetting the password",
-    });
-  }
+  return res.status(501).json({
+    success: false,
+    message: "Password reset feature has been disabled. Please contact an administrator."
+  });
 };
 
 
@@ -168,7 +115,6 @@ exports.getallUser = async (req, res, next) => {
 
 exports.isAuthenticatedUser = async (req, res, next) => {
   try {
-    // const { token } = req.cookies;
     let token;
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -176,12 +122,15 @@ exports.isAuthenticatedUser = async (req, res, next) => {
     }
     
     if (!token) {
-      console.log("Token not found");
-      return res.status(401).send("Unauthorized: Token not found");
+      return res.status(401).json({ message: "Unauthorized: Token not found" });
     }
     
     const decodedData = jwt.verify(token, process.env.JWT_SECRET);
     req.user = await User.findById(decodedData.id);
+    
+    if (!req.user) {
+      return res.status(401).json({ message: "User not found" });
+    }
     
     next();
   } catch (error) {
@@ -269,7 +218,6 @@ exports.updateGithub = async (req,res,next) =>{
     }
     req.user.Github = Github;
     await req.user.save();
-    console.log(await req.user.save())
     res.send({ message: 'github updated successfully', user: req.user });
 } catch (error) {
     console.error('Error updating github link:', error.message);

@@ -29,7 +29,6 @@ const getmarks = async (req, res) => {
     }
 
     const userId = req.user._id;
-    console.log(`User ID: ${userId.toString()}`);
 
     const filter = {
       reserversId: userId
@@ -38,14 +37,11 @@ const getmarks = async (req, res) => {
     const marks = await Marks.find(filter);
 
     const filteredMarks = marks.map(mark => {
-      const markUserId = mark.user;
       const reserverId = mark.reserversId;
-      console.log(`Mark User ID: ${markUserId.toString() || markUserId}`);
-      console.log(`Reserver ID: ${reserverId.toString() || reserverId}`);
 
       if (reserverId.toString() === userId.toString()) {
         return {
-          ...mark.toObject(), // Convert Mongoose document to plain object
+          ...mark.toObject(),
           img: {
             data: mark.img.data,
             contentType: mark.img.contentType
@@ -61,13 +57,11 @@ const getmarks = async (req, res) => {
       }
     });
 
-    console.log(`Marks fetched: ${filteredMarks}`);
     res.status(200).json({
       success: true,
       data: filteredMarks
     });
   } catch (error) {
-    console.error(`Error: ${error}`);
     res.status(500).json({
       success: false,
       error: "Failed to retrieve marks"
@@ -87,13 +81,7 @@ const uploadmarks = async (req, res) => {
       }
 
       try {
-          console.log('Request body:', req.body);
-          console.log('Request file:', req.file);
-
           const { rollNumber, semester, reserversId } = req.body;
-          console.log('RollNumber:', rollNumber);
-          console.log('Semester:', semester);
-          console.log('ReserverId:', reserversId);
 
           if (!rollNumber || !semester || !reserversId) {
               return res.status(400).json({
@@ -122,13 +110,11 @@ const uploadmarks = async (req, res) => {
           };
 
           const marks = await Marks.create(uploadmarksdata);
-          console.log(`Marks uploaded: ${marks}`);
           res.status(201).json({
               success: true,
               marks
           });
       } catch (error) {
-          console.error(`Error: ${error}`);
           res.status(500).json({
               success: false,
               error: error.message
@@ -141,7 +127,7 @@ const getrollnumber = async (req, res) => {
     const keyword = req.query.keyword
       ? {
           RollNumber: {
-            $regex: new RegExp(req.query.keyword, 'i'), // Use RegExp to build dynamic regex pattern
+            $regex: new RegExp(req.query.keyword, 'i'),
           },
         }
       : {};
@@ -150,7 +136,6 @@ const getrollnumber = async (req, res) => {
 
     res.status(200).json(rollNumbers);
   } catch (err) {
-    console.error('Error fetching roll numbers:', err);
     res.status(500).json({ message: 'Failed to fetch roll numbers' });
   }
 }

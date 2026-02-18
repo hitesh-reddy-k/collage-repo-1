@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-  exports.getPosts = async (req, res) => {
+exports.getPosts = async (req, res) => {
     try {
         const posts = await Post.find()
             .populate('user', 'Username Year')
@@ -32,7 +32,6 @@ const upload = multer({ storage: storage });
             data: posts
         });
     } catch (error) {
-        console.error(error);
         res.status(500).json({
             success: false,
             error: "Failed to retrieve information"
@@ -56,10 +55,8 @@ exports.getUserProfile = async (req, res) => {
 
 
 exports.newPost = async (req, res, next) => {
-    // Using Multer middleware to handle file upload
     upload.single('image')(req, res, async function (err) {
         if (err) {
-            console.error(err);
             return res.status(500).json({
                 success: false,
                 error: 'Failed to upload image'
@@ -71,7 +68,6 @@ exports.newPost = async (req, res, next) => {
 
             // If there's an uploaded file, read it and attach to newPostData
             if (req.file) {
-                console.log('Uploaded File:', req.file);
                 const imgData = fs.readFileSync(req.file.path);
                 newPostData.img = {
                     data: imgData,
@@ -102,7 +98,6 @@ exports.newPost = async (req, res, next) => {
                 post: newPost
             });
         } catch (error) {
-            console.error('Error creating new post:', error);
             res.status(500).json({
                 success: false,
                 error: 'Internal server error'
@@ -132,7 +127,6 @@ exports.addLike = async (req, res) => {
         await post.save();
         res.status(200).json(post);
     } catch (error) {
-        console.error('Error liking post:', error);
         res.status(500).json({ error: 'Server error' });
     }
 };
@@ -158,7 +152,7 @@ exports.addComment = async (req, res) => {
             user:new mongoose.Types.ObjectId(userId),
             Username: username,
             comment: comment,
-            likes: 0 // Initialize likes if needed
+            likes: 0
         };
 
         // Add comment to post
@@ -167,7 +161,6 @@ exports.addComment = async (req, res) => {
 
         res.status(201).json(post);
     } catch (error) {
-        console.error('Error submitting comment:', error);
         res.status(500).json({ error: 'Server error' });
     }
 };
@@ -179,17 +172,13 @@ exports.addComment = async (req, res) => {
         .populate("user", "Username Year")
         .populate("likesAndComments.user", "Username RollNumber");
     
-      console.log('Posts:', posts); // Add this line to check what is being fetched
-    
       if (!posts) {
         return res.status(404).json({ message: "Posts not found" });
       }
     
       res.status(200).json({ data: posts });
     } catch (error) {
-      console.error('Error fetching posts:', error); // Add this line to catch errors
       res.status(500).json({ message: error.message });
     }
-    
   };
   

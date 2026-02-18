@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto");
 const { link } = require("fs");
 
 const UserSchema = new mongoose.Schema({
@@ -59,17 +58,26 @@ const UserSchema = new mongoose.Schema({
     Attendance: {
         type: Number,
         default: 0 // Default attendance percentage
-    },
-    resetPasswordToken: String,
-    resetPasswordExpire: Date,
+    }
 }, { timestamps: true });
 
+// Validation: Check if password and confirmpassword match
+UserSchema.pre("validate", function(next) {
+    if (this.isNew && this.password !== this.conformpassword) {
+        this.invalidate('conformpassword', 'Passwords do not match');
+    }
+    next();
+});
+
+// Hash password before saving
 UserSchema.pre("save", async function(next) {
     try {
         if (!this.isModified("password")) {
             return next();
         }
         this.password = await bcrypt.hash(this.password, 10);
+        // Clear conformpassword after validation - no need to store it
+        this.conformpassword = undefined;
         next();
     } catch (error) {
         return next(error);
@@ -88,19 +96,6 @@ UserSchema.methods.comparePassword = async function(password) {
     } catch (error) {
         return false;
     }
-};
-
-UserSchema.methods.getResetPasswordToken = function() {
-    const resetToken = crypto.randomBytes(20).toString("hex");
-
-    this.resetPasswordToken = crypto
-        .createHash("sha256")
-        .update(resetToken)
-        .digest("hex");
-
-    this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
-
-    return resetToken;
 };
 
 module.exports = mongoose.model("User", UserSchema);
