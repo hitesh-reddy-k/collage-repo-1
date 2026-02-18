@@ -1,22 +1,22 @@
 const express = require('express');
 const http = require('http');
 const dotenv = require('dotenv');
-const Connect = require("../backend/databacesonnect/data.js");
-const questions = require("../backend/routes/questionsroute.js");
+const Connect = require("./databacesonnect/data.js");
+const questions = require("./routes/questionsroute.js");
 const path = require("path");
-const user = require("../backend/routes/userroute.js");
-const marks = require("../backend/routes/sem-marksroute.js");
+const user = require("./routes/userroute.js");
+const marks = require("./routes/sem-marksroute.js");
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
-const messages = require("../backend/routes/message.js");
-const community = require("../backend/routes/communityroute.js");
-const { socketHandler } = require("../backend/socketServer/socket.js");
+const messages = require("./routes/message.js");
+const community = require("./routes/communityroute.js");
+const { socketHandler } = require("./socketServer/socket.js");
 
 const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT || 3000;
 
-dotenv.config({ path: "backend/env/.env" });
+dotenv.config({ path: "./env/.env" });
 
 // ---------- STATIC ----------
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -139,14 +139,18 @@ app.use((err, req, res, next) => {
 // ---------- DB ----------
 Connect();
 
-// ---------- SOCKET.IO ----------
-socketHandler(server);
-
 // ---------- SERVER ----------
-server.listen(port, () => {
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`Server listening on port http://localhost:${port}`);
-  }
-});
+// Only start server if not in Vercel serverless environment
+if (process.env.VERCEL !== '1') {
+  // ---------- SOCKET.IO ----------
+  socketHandler(server);
+  
+  server.listen(port, () => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`Server listening on port http://localhost:${port}`);
+    }
+  });
+}
 
-module.exports = server;
+// Export app for Vercel serverless functions
+module.exports = app;

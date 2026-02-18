@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 
+// Load environment variables (for local development)
+dotenv.config({ path: "./env/.env" });
 
-dotenv.config({ path: "backend/env/.env" });
-
-const URL = process.env.URL 
+const URL = process.env.URL; 
 
 const Connect = async () => {
     try {

@@ -4,6 +4,14 @@ This guide will help you deploy the College Platform to production.
 
 ## 🚀 Quick Deploy to Vercel
 
+### Important Note About Socket.IO
+⚠️ **Socket.IO real-time messaging will NOT work on Vercel's serverless platform** due to the stateless nature of serverless functions. If you need real-time messaging, consider:
+- Deploying to Heroku, Railway, or DigitalOcean App Platform
+- Using a separate WebSocket service (Pusher, Ably)
+- Keeping Socket.IO features disabled on Vercel
+
+The application will work fine on Vercel for all other features (questions, community, marks, authentication).
+
 ### Step 1: Prepare Your Repository
 
 1. Ensure all changes are committed to Git:
