@@ -9,11 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "backend/index.js"
+      "dest": "/backend/index.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production",
-    "VERCEL": "1"
-  }
+  ]
 }
