@@ -19,7 +19,7 @@
   "author": "hitesh reddy k",
   "license": "ISC",
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "dependencies": {
     "aws-sdk": "^2.1643.0",
