@@ -1,13 +1,12 @@
 {
   "name": "big-project-1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A comprehensive college management platform with features for posting questions, managing marks, community interactions, and real-time messaging",
   "main": "backend/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/index.js",
-    "dev": "nodemon backend/index.js",
-    "vercel-build": "echo 'Building for Vercel'"
+    "dev": "nodemon backend/index.js"
   },
   "keywords": [
     "college",
@@ -20,7 +19,7 @@
   "author": "hitesh reddy k",
   "license": "ISC",
   "engines": {
-    "node": ">=14.0.0"
+    "node": "18.x"
   },
   "dependencies": {
     "aws-sdk": "^2.1643.0",

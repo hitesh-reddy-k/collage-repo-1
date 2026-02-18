@@ -1,6 +1,6 @@
 const Message = require('../databasemodels/message');
 const Conversation = require('../databasemodels/conversations');
-const { getReceiverSocketId, io } = require('../socketServer/socket');
+const { getReceiverSocketId, getIO } = require('../socketServer/socket');
 
 exports.sendMessage = async (req, res) => {
     try {
@@ -32,10 +32,13 @@ exports.sendMessage = async (req, res) => {
         conversation.messages.push(newMessage._id);
         await conversation.save();
 
-        // Emit the new message event to the receiver's socket
-        const receiverSocketId = getReceiverSocketId(receiverId);
-        if (receiverSocketId) {
-            io.to(receiverSocketId).emit("newMessage", newMessage);
+        // Emit the new message event to the receiver's socket (only if Socket.IO is available)
+        const io = getIO();
+        if (io) {
+            const receiverSocketId = getReceiverSocketId(receiverId);
+            if (receiverSocketId) {
+                io.to(receiverSocketId).emit("newMessage", newMessage);
+            }
         }
 
         res.status(201).json(newMessage);

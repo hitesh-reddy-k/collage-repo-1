@@ -1,9 +1,12 @@
+// Load environment variables FIRST - before any other imports
+const dotenv = require('dotenv');
+const path = require("path");
+dotenv.config({ path: path.join(__dirname, 'env', '.env') });
+
 const express = require('express');
 const http = require('http');
-const dotenv = require('dotenv');
 const Connect = require("./databacesonnect/data.js");
 const questions = require("./routes/questionsroute.js");
-const path = require("path");
 const user = require("./routes/userroute.js");
 const marks = require("./routes/sem-marksroute.js");
 const bodyParser = require('body-parser');
@@ -15,8 +18,6 @@ const { socketHandler } = require("./socketServer/socket.js");
 const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT || 3000;
-
-dotenv.config({ path: "./env/.env" });
 
 // ---------- STATIC ----------
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

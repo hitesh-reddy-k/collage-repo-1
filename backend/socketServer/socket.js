@@ -1,18 +1,13 @@
-
-const http = require("http");
-const express = require("express");
-
-const app = express();
-
-const server = http.createServer(app);
-
-
 const socketIo = require('socket.io');
-let io;
 
+// Socket.IO instance - will be undefined in serverless environment
+let io = null;
 const socketUsers = new Map();
 
 const socketHandler = (server) => {
+    // Only initialize Socket.IO if server is provided
+    if (!server) return;
+    
     io = socketIo(server, {
         cors: {
             origin: [
@@ -49,8 +44,12 @@ const socketHandler = (server) => {
     });
 };
 
+// Safe getter for receiver socket ID - returns null if Socket.IO not initialized
 const getReceiverSocketId = (receiverId) => {
     return socketUsers.get(receiverId) || null;
 };
 
-module.exports = { socketHandler, getReceiverSocketId, io };
+// Getter function for io instance
+const getIO = () => io;
+
+module.exports = { socketHandler, getReceiverSocketId, getIO };
